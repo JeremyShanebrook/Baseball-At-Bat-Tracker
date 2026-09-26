@@ -1,0 +1,231 @@
+-- Merging decision tree log ---
+provider#androidx.core.content.FileProvider
+INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:12:9-20:20
+	android:grantUriPermissions
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:16:13-47
+	android:authorities
+		INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:14:13-64
+	android:exported
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:15:13-37
+	android:name
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:13:13-62
+manifest
+ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:1:1-31:12
+INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:1:1-31:12
+INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:1:1-31:12
+INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:1:1-31:12
+MERGED from [androidx.webkit:webkit:1.12.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9cf9673a3b0ef055fedebe84c28bce38\workspace\transformed\webkit-1.12.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.activity:activity-ktx:1.10.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\181c6e413026b1cb1479a89372fe9788\workspace\transformed\activity-ktx-1.10.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity:1.10.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\13a0f460d86335159da4650562a29a77\workspace\transformed\activity-1.10.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\2b5100aac23202ae44067770ce99b12a\workspace\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\5aa7b476ad9741701419b32b9babb3ea\workspace\transformed\savedstate-1.2.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\0eed12089b54430343c2d713c851db43\workspace\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\ded399158600ed2d0d93a0043ccc6e12\workspace\transformed\lifecycle-viewmodel-ktx-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\95802ff9517f6b5d64841b266a518782\workspace\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\e48ea6d77ece527d2ba6817c111d2aa2\workspace\transformed\lifecycle-runtime-ktx-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\2d2f2d2495dd6796686f428a276c8725\workspace\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\e7d2f47b7333ba2d53819f1ca8c8295e\workspace\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\307b88f564543db1abaddeb58c8087ab\workspace\transformed\core-ktx-1.15.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\3dac9aaa1593e28fd664a1e7014cd109\workspace\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9f0cbd291ad9afffa1ccb905f41c064b\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\04401ef4f5efd1ff80e2fd0aa8c4cf23\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\501ce4439419804fe856362b8299e23b\workspace\transformed\tracing-1.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\79e593897f601b0fa973afacad74e046\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\1e8dfc060090e2f1d8bd6ce46b8849b3\workspace\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\c844705de842c9117fac2dc10834db1b\workspace\transformed\core-viewtree-1.0.0\AndroidManifest.xml:2:1-7:12
+	package
+		INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:1:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:2:5-67
+	android:name
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:2:22-64
+uses-permission#android.permission.REQUEST_INSTALL_PACKAGES
+ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:3:5-83
+	android:name
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:3:22-80
+application
+ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:4:5-30:19
+INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:4:5-30:19
+MERGED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\04401ef4f5efd1ff80e2fd0aa8c4cf23\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\04401ef4f5efd1ff80e2fd0aa8c4cf23\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\79e593897f601b0fa973afacad74e046\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\79e593897f601b0fa973afacad74e046\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:9:9-35
+	android:label
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:7:9-57
+	android:icon
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:6:9-52
+	android:allowBackup
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:5:9-35
+	android:theme
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:10:9-55
+	android:usesCleartextTraffic
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:11:9-45
+activity#com.baseballabtracker.app.MainActivity
+ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:21:9-29:20
+	android:screenOrientation
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:24:13-49
+	android:exported
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:23:13-36
+	android:name
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:22:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:25:13-28:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:26:17-69
+	android:name
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:26:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:27:17-77
+	android:name
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:27:27-74
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:17:13-19:54
+	android:resource
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:19:17-51
+	android:name
+		ADDED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml:18:17-67
+uses-sdk
+INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml
+MERGED from [androidx.webkit:webkit:1.12.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9cf9673a3b0ef055fedebe84c28bce38\workspace\transformed\webkit-1.12.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.webkit:webkit:1.12.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9cf9673a3b0ef055fedebe84c28bce38\workspace\transformed\webkit-1.12.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.10.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\181c6e413026b1cb1479a89372fe9788\workspace\transformed\activity-ktx-1.10.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.10.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\181c6e413026b1cb1479a89372fe9788\workspace\transformed\activity-ktx-1.10.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity:1.10.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\13a0f460d86335159da4650562a29a77\workspace\transformed\activity-1.10.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.10.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\13a0f460d86335159da4650562a29a77\workspace\transformed\activity-1.10.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\2b5100aac23202ae44067770ce99b12a\workspace\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\2b5100aac23202ae44067770ce99b12a\workspace\transformed\savedstate-ktx-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\5aa7b476ad9741701419b32b9babb3ea\workspace\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\5aa7b476ad9741701419b32b9babb3ea\workspace\transformed\savedstate-1.2.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\0eed12089b54430343c2d713c851db43\workspace\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\0eed12089b54430343c2d713c851db43\workspace\transformed\lifecycle-livedata-core-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\ded399158600ed2d0d93a0043ccc6e12\workspace\transformed\lifecycle-viewmodel-ktx-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\ded399158600ed2d0d93a0043ccc6e12\workspace\transformed\lifecycle-viewmodel-ktx-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\95802ff9517f6b5d64841b266a518782\workspace\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\95802ff9517f6b5d64841b266a518782\workspace\transformed\lifecycle-viewmodel-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\e48ea6d77ece527d2ba6817c111d2aa2\workspace\transformed\lifecycle-runtime-ktx-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\e48ea6d77ece527d2ba6817c111d2aa2\workspace\transformed\lifecycle-runtime-ktx-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\2d2f2d2495dd6796686f428a276c8725\workspace\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\2d2f2d2495dd6796686f428a276c8725\workspace\transformed\lifecycle-runtime-2.6.2\AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\e7d2f47b7333ba2d53819f1ca8c8295e\workspace\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] C:\Users\jerem\.gradle\caches\9.3.0\transforms\e7d2f47b7333ba2d53819f1ca8c8295e\workspace\transformed\lifecycle-viewmodel-savedstate-2.6.2\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\307b88f564543db1abaddeb58c8087ab\workspace\transformed\core-ktx-1.15.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\307b88f564543db1abaddeb58c8087ab\workspace\transformed\core-ktx-1.15.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\3dac9aaa1593e28fd664a1e7014cd109\workspace\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\3dac9aaa1593e28fd664a1e7014cd109\workspace\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9f0cbd291ad9afffa1ccb905f41c064b\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9f0cbd291ad9afffa1ccb905f41c064b\workspace\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\04401ef4f5efd1ff80e2fd0aa8c4cf23\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\04401ef4f5efd1ff80e2fd0aa8c4cf23\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\501ce4439419804fe856362b8299e23b\workspace\transformed\tracing-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\501ce4439419804fe856362b8299e23b\workspace\transformed\tracing-1.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\79e593897f601b0fa973afacad74e046\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\79e593897f601b0fa973afacad74e046\workspace\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\1e8dfc060090e2f1d8bd6ce46b8849b3\workspace\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\1e8dfc060090e2f1d8bd6ce46b8849b3\workspace\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\c844705de842c9117fac2dc10834db1b\workspace\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\c844705de842c9117fac2dc10834db1b\workspace\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\jerem\Desktop\BaseballABTrackerAndroid\BaseballABTrackerAndroid\app\src\main\AndroidManifest.xml
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
+permission#com.baseballabtracker.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
+uses-permission#com.baseballabtracker.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\9c6fdba7eed1f0ab8038d0016266e5d5\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\04401ef4f5efd1ff80e2fd0aa8c4cf23\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jerem\.gradle\caches\9.3.0\transforms\04401ef4f5efd1ff80e2fd0aa8c4cf23\workspace\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\6b1a6aad7ca80a92f0869f6e94735482\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92

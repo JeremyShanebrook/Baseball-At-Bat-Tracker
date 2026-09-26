@@ -1,0 +1,4 @@
+#Sat Sep 26 11:04:22 PDT 2026
+base.0=C\:\\Users\\jerem\\Desktop\\BaseballABTrackerAndroid\\BaseballABTrackerAndroid\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+path.0=0/classes.dex
+renamed.0=classes.dex
