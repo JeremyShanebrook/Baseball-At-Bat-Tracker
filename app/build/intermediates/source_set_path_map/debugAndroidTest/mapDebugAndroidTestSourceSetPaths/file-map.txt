@@ -1,11 +1,4 @@
-<<<<<<< Updated upstream
-com.baseballabtracker.app.test.app-androidTest-0 C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\BaseballABTrackerAndroid-v1.3.0-sidebar-pages\app\build\generated\res\resValues\androidTest\debug
-com.baseballabtracker.app.test.app-mergeDebugAndroidTestResources-1 C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\BaseballABTrackerAndroid-v1.3.0-sidebar-pages\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.baseballabtracker.app.test.app-mergeDebugAndroidTestResources-2 C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\BaseballABTrackerAndroid-v1.3.0-sidebar-pages\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.baseballabtracker.app.test.app-debugAndroidTest-3 C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\BaseballABTrackerAndroid-v1.3.0-sidebar-pages\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
-=======
-com.baseballabtracker.app.test.app-androidTest-0 C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\build\generated\res\resValues\androidTest\debug
-com.baseballabtracker.app.test.app-mergeDebugAndroidTestResources-1 C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.baseballabtracker.app.test.app-mergeDebugAndroidTestResources-2 C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.baseballabtracker.app.test.app-debugAndroidTest-3 C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
->>>>>>> Stashed changes
+com.baseballabtracker.app.test.app-androidTest-0 C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-animation\app\build\generated\res\resValues\androidTest\debug
+com.baseballabtracker.app.test.app-mergeDebugAndroidTestResources-1 C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-animation\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.baseballabtracker.app.test.app-mergeDebugAndroidTestResources-2 C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-animation\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.baseballabtracker.app.test.app-debugAndroidTest-3 C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-animation\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
