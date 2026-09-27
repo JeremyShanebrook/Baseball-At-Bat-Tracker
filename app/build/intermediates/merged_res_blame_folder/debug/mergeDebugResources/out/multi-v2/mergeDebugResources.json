@@ -803,6 +803,26 @@
                     }
                 },
                 {
+<<<<<<< Updated upstream
+=======
+                    "source": "C:\\Users\\jerem\\Desktop\\Baseball-At-Bat-Tracker\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "56",
+                        "endOffsets": "68"
+                    },
+                    "to": {
+                        "startLines": "93",
+                        "startColumns": "4",
+                        "startOffsets": "5555",
+                        "endColumns": "56",
+                        "endOffsets": "5607"
+                    }
+                },
+                {
+>>>>>>> Stashed changes
                     "source": "C:\\Users\\jerem\\.gradle\\caches\\9.3.0\\transforms\\56fae7b3dcbf656f175eea2f6058d2e2\\workspace\\transformed\\core-viewtree-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -854,11 +874,16 @@
                     }
                 },
                 {
+<<<<<<< Updated upstream
                     "source": "C:\\Users\\jerem\\Desktop\\Baseball-At-Bat-Tracker\\BaseballABTrackerAndroid-v1.3.0-sidebar-pages\\app\\src\\main\\res\\values\\strings.xml",
+=======
+                    "source": "C:\\Users\\jerem\\Desktop\\Baseball-At-Bat-Tracker\\app\\src\\main\\res\\values\\colors.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
                         "startOffsets": "16",
+<<<<<<< Updated upstream
                         "endColumns": "56",
                         "endOffsets": "68"
                     },
@@ -868,6 +893,17 @@
                         "startOffsets": "5555",
                         "endColumns": "56",
                         "endOffsets": "5607"
+=======
+                        "endColumns": "53",
+                        "endOffsets": "65"
+                    },
+                    "to": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "406",
+                        "endColumns": "53",
+                        "endOffsets": "455"
+>>>>>>> Stashed changes
                     }
                 },
                 {
@@ -888,6 +924,7 @@
                     }
                 },
                 {
+<<<<<<< Updated upstream
                     "source": "C:\\Users\\jerem\\.gradle\\caches\\9.3.0\\transforms\\f319c85ae667db86d9c4f1817fce1f66\\workspace\\transformed\\lifecycle-viewmodel-2.6.2\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -906,6 +943,9 @@
                 },
                 {
                     "source": "C:\\Users\\jerem\\Desktop\\Baseball-At-Bat-Tracker\\BaseballABTrackerAndroid-v1.3.0-sidebar-pages\\app\\src\\main\\res\\values\\themes.xml",
+=======
+                    "source": "C:\\Users\\jerem\\Desktop\\Baseball-At-Bat-Tracker\\app\\src\\main\\res\\values\\themes.xml",
+>>>>>>> Stashed changes
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
@@ -924,6 +964,26 @@
                     }
                 },
                 {
+<<<<<<< Updated upstream
+=======
+                    "source": "C:\\Users\\jerem\\.gradle\\caches\\9.3.0\\transforms\\f319c85ae667db86d9c4f1817fce1f66\\workspace\\transformed\\lifecycle-viewmodel-2.6.2\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "49",
+                        "endOffsets": "100"
+                    },
+                    "to": {
+                        "startLines": "90",
+                        "startColumns": "4",
+                        "startOffsets": "5352",
+                        "endColumns": "49",
+                        "endOffsets": "5397"
+                    }
+                },
+                {
+>>>>>>> Stashed changes
                     "source": "C:\\Users\\jerem\\.gradle\\caches\\9.3.0\\transforms\\1a9734fdb58966053160d202924100d3\\workspace\\transformed\\savedstate-1.2.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -939,6 +999,7 @@
                         "endColumns": "53",
                         "endOffsets": "5347"
                     }
+<<<<<<< Updated upstream
                 },
                 {
                     "source": "C:\\Users\\jerem\\Desktop\\Baseball-At-Bat-Tracker\\BaseballABTrackerAndroid-v1.3.0-sidebar-pages\\app\\src\\main\\res\\values\\colors.xml",
@@ -956,6 +1017,8 @@
                         "endColumns": "53",
                         "endOffsets": "455"
                     }
+=======
+>>>>>>> Stashed changes
                 }
             ]
         },
