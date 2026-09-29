@@ -122,20 +122,36 @@ class MainActivity : ComponentActivity() {
             if (!developerUnlocked) return
             thread {
                 try {
-                    val conn = URL(manifestUrl("testing")).openConnection() as HttpURLConnection
-                    conn.connectTimeout = 8000; conn.readTimeout = 8000
+                    val conn = URL(releasesUrl()).openConnection() as HttpURLConnection
+                    conn.connectTimeout = 10000; conn.readTimeout = 10000
+                    conn.requestMethod = "GET"
+                    conn.setRequestProperty("Accept", "application/vnd.github+json")
+                    conn.setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
+                    conn.setRequestProperty("User-Agent", "Baseball-At-Bat-Tracker")
+                    val code = conn.responseCode
+                    if (code !in 200..299) throw IllegalStateException("GitHub returned HTTP $code")
                     val body = conn.inputStream.bufferedReader().use { it.readText() }
                     conn.disconnect()
-                    val arr = JSONObject(body).optJSONArray("previous") ?: org.json.JSONArray()
+                    val arr = org.json.JSONArray(body)
                     val labels = ArrayList<String>(); val urls = ArrayList<String>()
-                    for (i in 0 until arr.length()) { val o=arr.getJSONObject(i); labels.add(o.optString("versionName","previous")); urls.add(o.optString("apkUrl","")) }
+                    val current = currentVersionName()
+                    for (i in 0 until arr.length()) {
+                        val r = arr.optJSONObject(i) ?: continue
+                        if (r.optBoolean("draft", false)) continue
+                        val name = releaseVersion(r.optString("tag_name", ""))
+                        val apk = releaseApkUrl(r)
+                        if (name.isNotBlank() && apk.isNotBlank() && name != current) {
+                            labels.add(name + if (r.optBoolean("prerelease", false)) " (Testing)" else " (Official)")
+                            urls.add(apk)
+                        }
+                    }
                     runOnUiThread {
-                        if (labels.isEmpty()) { showMessage("No rollback builds are listed in the testing update manifest."); return@runOnUiThread }
+                        if (labels.isEmpty()) { showMessage("No rollback builds with APKs were found on GitHub."); return@runOnUiThread }
                         AlertDialog.Builder(this@MainActivity).setTitle("Rollback version")
-                            .setItems(labels.toTypedArray()) { _, which -> if (urls[which].isNotBlank()) downloadAndInstall(urls[which], labels[which]) }
+                            .setItems(labels.toTypedArray()) { _, which -> if (urls[which].isNotBlank()) downloadAndInstall(urls[which], labels[which].substringBefore(" (")) }
                             .setNegativeButton("Cancel", null).show()
                     }
-                } catch (_: Exception) { runOnUiThread { showMessage("Couldn't load rollback versions.") } }
+                } catch (e: Exception) { runOnUiThread { showMessage("Couldn't load rollback versions.\n\n${e.message ?: "Unknown error"}") } }
             }
         }
         @JavascriptInterface fun clearUpdateCache() { File(cacheDir, "updates").deleteRecursively() }
@@ -144,38 +160,86 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private fun releasesUrl(): String =
+        "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases?per_page=20"
+
+    private fun latestReleaseUrl(): String =
+        "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/latest"
+
+    private fun releaseVersion(tag: String): String = tag.removePrefix("v").trim()
+
+    private fun versionParts(v: String): List<Int> {
+        val m = Regex("^(\\d+)\\.(\\d+)\\.(\\d+)(?:-beta\\.(\\d+))?").find(v)
+        return if (m != null) listOf(
+            m.groupValues[1].toInt(), m.groupValues[2].toInt(), m.groupValues[3].toInt(),
+            m.groupValues.getOrNull(4)?.takeIf { it.isNotBlank() }?.toInt() ?: Int.MAX_VALUE
+        ) else listOf(0, 0, 0, 0)
+    }
+
+    private fun isNewerVersion(remote: String, current: String): Boolean {
+        val r = versionParts(remote)
+        val c = versionParts(current)
+        for (i in r.indices) if (r[i] != c[i]) return r[i] > c[i]
+        return false
+    }
+
+    private fun releaseApkUrl(release: JSONObject): String {
+        val assets = release.optJSONArray("assets") ?: return ""
+        for (i in 0 until assets.length()) {
+            val asset = assets.optJSONObject(i) ?: continue
+            val name = asset.optString("name", "")
+            if (name.lowercase().endsWith(".apk")) return asset.optString("browser_download_url", "")
+        }
+        return ""
+    }
+
     private fun manifestUrl(channel: String): String {
+        // Kept for backward compatibility with older rollback data. New update checks use Releases API.
         val branch = if (channel == "testing") TESTING_BRANCH else OFFICIAL_BRANCH
         return "https://raw.githubusercontent.com/$GITHUB_OWNER/$GITHUB_REPO/$branch/update-manifest.json?cacheBust=${System.currentTimeMillis()}"
     }
 
     private fun checkForUpdatesInternal(channel: String, silent: Boolean = false) {
         if (GITHUB_OWNER.isBlank() || GITHUB_REPO.isBlank()) {
-            runOnUiThread { if (!silent) showMessage("Update system isn't configured yet. Open MainActivity.kt and set GITHUB_OWNER and GITHUB_REPO to your GitHub repository.") }
+            runOnUiThread { if (!silent) showMessage("Update system isn't configured yet. Check the GitHub owner and repository in MainActivity.kt.") }
             return
         }
         thread {
             try {
-                val conn = URL(manifestUrl(channel)).openConnection() as HttpURLConnection
-                conn.connectTimeout = 8000
-                conn.readTimeout = 8000
+                val url = if (channel == "testing") releasesUrl() else latestReleaseUrl()
+                val conn = URL(url).openConnection() as HttpURLConnection
+                conn.connectTimeout = 10000
+                conn.readTimeout = 10000
                 conn.requestMethod = "GET"
-                conn.setRequestProperty("Cache-Control", "no-cache")
+                conn.setRequestProperty("Accept", "application/vnd.github+json")
+                conn.setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
+                conn.setRequestProperty("User-Agent", "Baseball-At-Bat-Tracker")
                 val code = conn.responseCode
-                if (code !in 200..299) {
-                    conn.disconnect()
-                    throw IllegalStateException("GitHub returned HTTP $code for ${manifestUrl(channel)}")
-                }
+                if (code !in 200..299) throw IllegalStateException("GitHub returned HTTP $code")
                 val body = conn.inputStream.bufferedReader().use { it.readText() }
                 conn.disconnect()
-                val m = JSONObject(body)
-                val remoteCode = m.optInt("versionCode", 0)
-                val remoteName = m.optString("versionName", "new version")
-                val notes = m.optString("releaseNotes", "")
-                val apkUrl = m.optString("apkUrl", "")
-                val current = currentVersionCode()
+
+                val release = if (channel == "testing") {
+                    val arr = org.json.JSONArray(body)
+                    var found: JSONObject? = null
+                    for (i in 0 until arr.length()) {
+                        val r = arr.optJSONObject(i) ?: continue
+                        if (!r.optBoolean("draft", false) && r.optBoolean("prerelease", false)) { found = r; break }
+                    }
+                    found
+                } else JSONObject(body).takeUnless { it.optBoolean("draft", false) || it.optBoolean("prerelease", false) }
+
+                if (release == null) {
+                    runOnUiThread { if (!silent) showMessage("No published ${if (channel == "testing") "testing" else "official"} release was found on GitHub.") }
+                    return@thread
+                }
+
+                val remoteName = releaseVersion(release.optString("tag_name", ""))
+                val notes = release.optString("body", "")
+                val apkUrl = releaseApkUrl(release)
+                val current = currentVersionName()
                 runOnUiThread {
-                    if (remoteCode > current && apkUrl.isNotBlank()) {
+                    if (remoteName.isNotBlank() && isNewerVersion(remoteName, current) && apkUrl.isNotBlank()) {
                         AlertDialog.Builder(this)
                             .setTitle("Update available")
                             .setMessage("Version $remoteName is available.\n\n$notes")
@@ -189,7 +253,7 @@ class MainActivity : ComponentActivity() {
             } catch (e: Exception) {
                 if (!silent) runOnUiThread {
                     val detail = e.message?.takeIf { it.isNotBlank() } ?: "Unknown error"
-                    showMessage("Couldn't check for updates.\n\n$detail")
+                    showMessage("Couldn't check GitHub for updates.\n\n$detail")
                 }
             }
         }

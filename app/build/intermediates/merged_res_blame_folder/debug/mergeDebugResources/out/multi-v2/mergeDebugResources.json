@@ -784,7 +784,7 @@
             "outputFile": "com.baseballabtracker.app-debug-23:/values_values.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-animation\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-beta2-runner-update\\abt\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
@@ -820,6 +820,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-beta2-runner-update\\abt\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "53",
+                        "endOffsets": "65"
+                    },
+                    "to": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "406",
+                        "endColumns": "53",
+                        "endOffsets": "455"
+                    }
+                },
+                {
                     "source": "C:\\Users\\jerem\\.gradle\\caches\\9.3.0\\transforms\\56fae7b3dcbf656f175eea2f6058d2e2\\workspace\\transformed\\core-viewtree-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -837,25 +854,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-animation\\app\\src\\main\\res\\values\\themes.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "63",
-                        "endLines": "7",
-                        "endColumns": "12",
-                        "endOffsets": "463"
-                    },
-                    "to": {
-                        "startLines": "113",
-                        "startColumns": "4",
-                        "startOffsets": "6952",
-                        "endLines": "119",
-                        "endColumns": "12",
-                        "endOffsets": "7352"
-                    }
-                },
-                {
                     "source": "C:\\Users\\jerem\\.gradle\\caches\\9.3.0\\transforms\\e634d39044b52a4b7642b45e9de6ff78\\workspace\\transformed\\lifecycle-runtime-2.6.2\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -870,23 +868,6 @@
                         "startOffsets": "5195",
                         "endColumns": "42",
                         "endOffsets": "5233"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-animation\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "53",
-                        "endOffsets": "65"
-                    },
-                    "to": {
-                        "startLines": "7",
-                        "startColumns": "4",
-                        "startOffsets": "406",
-                        "endColumns": "53",
-                        "endOffsets": "455"
                     }
                 },
                 {
@@ -921,6 +902,25 @@
                         "startOffsets": "4251,5238",
                         "endColumns": "41,59",
                         "endOffsets": "4288,5293"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-beta2-runner-update\\abt\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "63",
+                        "endLines": "7",
+                        "endColumns": "12",
+                        "endOffsets": "463"
+                    },
+                    "to": {
+                        "startLines": "113",
+                        "startColumns": "4",
+                        "startOffsets": "6952",
+                        "endLines": "119",
+                        "endColumns": "12",
+                        "endOffsets": "7352"
                     }
                 },
                 {

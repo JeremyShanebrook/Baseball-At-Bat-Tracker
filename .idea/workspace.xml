@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6b0e012-0140-4f15-a859-ee82d9d02a00" name="Changes" comment="" />
+    <list default="true" id="39bfd0b5-4c76-4f8c-8843-e8a6f01bb9c9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,16 +13,17 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[LocalEmulator::path=C:\Users\jerem\.android\avd\Medium_Phone.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5,
+  "associatedIndex": 6,
   "fromUser": false
 }]]></component>
-  <component name="ProjectId" id="3JtsdiaJVRR5fAqBmuDYmK45C1i" />
+  <component name="ProjectId" id="3K19Kh7zrnlfRWLBBzwZ9nu58xV" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -36,7 +37,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jerem/Downloads/BaseballABTrackerAndroid-v1.3.0-animation"
+    "last_opened_file_path": "C:/Users/jerem/Downloads/BaseballABTrackerAndroid-v1.3.0-beta2-runner-update/abt"
   }
 }]]></component>
   <component name="RunManager">
@@ -109,11 +110,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e6b0e012-0140-4f15-a859-ee82d9d02a00" name="Changes" comment="" />
-      <created>1790491787649</created>
+      <changelist id="39bfd0b5-4c76-4f8c-8843-e8a6f01bb9c9" name="Changes" comment="" />
+      <created>1790714144742</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1790491787649</updated>
+      <updated>1790714144742</updated>
     </task>
     <servers />
   </component>
