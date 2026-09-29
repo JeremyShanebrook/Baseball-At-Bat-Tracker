@@ -784,7 +784,7 @@
             "outputFile": "com.baseballabtracker.app-debug-23:/values_values.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-beta2-runner-update\\abt\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
@@ -820,7 +820,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-beta2-runner-update\\abt\\app\\src\\main\\res\\values\\colors.xml",
+                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
@@ -905,7 +905,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-beta2-runner-update\\abt\\app\\src\\main\\res\\values\\themes.xml",
+                    "source": "C:\\Users\\jerem\\Downloads\\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\\app\\src\\main\\res\\values\\themes.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
