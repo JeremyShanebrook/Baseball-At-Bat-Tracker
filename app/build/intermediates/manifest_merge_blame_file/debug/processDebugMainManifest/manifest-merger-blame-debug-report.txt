@@ -1,19 +1,19 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.baseballabtracker.app"
-4    android:versionCode="5"
-5    android:versionName="1.3.0-beta.2" >
+4    android:versionCode="6"
+5    android:versionName="1.3.0-beta.3" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="23"
 9        android:targetSdkVersion="35" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:2:5-67
-11-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:2:22-64
+11-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:2:5-67
+11-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:2:22-64
 12    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-12-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:3:5-83
-12-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:3:22-80
+12-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:3:5-83
+12-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:3:22-80
 13
 14    <permission
 14-->[androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\0c8635a6eb77076c5a9e4fec673c0874\workspace\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
@@ -27,59 +27,59 @@
 18-->[androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\0c8635a6eb77076c5a9e4fec673c0874\workspace\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
 19
 20    <application
-20-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:4:5-30:19
+20-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:4:5-30:19
 21        android:allowBackup="true"
-21-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:5:9-35
+21-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:5:9-35
 22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 22-->[androidx.core:core:1.15.0] C:\Users\jerem\.gradle\caches\9.3.0\transforms\0c8635a6eb77076c5a9e4fec673c0874\workspace\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
 23        android:debuggable="true"
 24        android:extractNativeLibs="false"
 25        android:icon="@drawable/ic_launcher_legacy"
-25-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:6:9-52
+25-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:6:9-52
 26        android:label="@string/app_name"
-26-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:8:9-41
+26-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:8:9-41
 27        android:roundIcon="@drawable/ic_launcher_legacy"
-27-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:7:9-57
+27-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:7:9-57
 28        android:supportsRtl="true"
-28-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:9:9-35
+28-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:9:9-35
 29        android:theme="@style/Theme.BaseballABTracker"
-29-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:10:9-55
+29-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:10:9-55
 30        android:usesCleartextTraffic="false" >
-30-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:11:9-45
+30-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:11:9-45
 31        <provider
 32            android:name="androidx.core.content.FileProvider"
-32-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:13:13-62
+32-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:13:13-62
 33            android:authorities="com.baseballabtracker.app.fileprovider"
-33-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:14:13-64
+33-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:14:13-64
 34            android:exported="false"
-34-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:15:13-37
+34-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:15:13-37
 35            android:grantUriPermissions="true" >
-35-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:16:13-47
+35-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:16:13-47
 36            <meta-data
-36-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:17:13-19:54
+36-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:17:13-19:54
 37                android:name="android.support.FILE_PROVIDER_PATHS"
-37-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:18:17-67
+37-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:18:17-67
 38                android:resource="@xml/file_paths" />
-38-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:19:17-51
+38-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:19:17-51
 39        </provider>
 40
 41        <activity
-41-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:21:9-29:20
+41-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:21:9-29:20
 42            android:name="com.baseballabtracker.app.MainActivity"
-42-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:22:13-41
+42-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:22:13-41
 43            android:exported="true"
-43-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:23:13-36
+43-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:23:13-36
 44            android:screenOrientation="portrait" >
-44-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:24:13-49
+44-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:24:13-49
 45            <intent-filter>
-45-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:25:13-28:29
+45-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:25:13-28:29
 46                <action android:name="android.intent.action.MAIN" />
-46-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:26:17-69
-46-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:26:25-66
+46-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:26:17-69
+46-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:26:25-66
 47
 48                <category android:name="android.intent.category.LAUNCHER" />
-48-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:27:17-77
-48-->C:\Users\jerem\Downloads\BaseballABTrackerAndroid-v1.3.0-beta3-runner-sounds\app\src\main\AndroidManifest.xml:27:27-74
+48-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:27:17-77
+48-->C:\Users\jerem\Desktop\Baseball-At-Bat-Tracker\app\src\main\AndroidManifest.xml:27:27-74
 49            </intent-filter>
 50        </activity>
 51
