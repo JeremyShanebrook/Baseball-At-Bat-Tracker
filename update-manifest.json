@@ -1,6 +1,6 @@
 {
-  "versionCode": 9,
-  "versionName": "1.3.0-beta.6",
-  "releaseNotes": "Beta 6 includes the updated runner system and the latest at-bat tracker fixes.",
-  "apkUrl": "https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.6/Baseball-At-Bat-Tracker-v1.3.0-beta.6.apk"
+  "versionCode": 10,
+  "versionName": "1.3.0-beta.7",
+  "releaseNotes": "Runner animation now traverses every intermediate base, Hit and Stolen Base prompts can be canceled by tapping the same action again, and walks/HBP advance only forced runners without destination prompts.",
+  "apkUrl": "https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.7/Baseball-At-Bat-Tracker-v1.3.0-beta.7.apk"
 }
