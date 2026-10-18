@@ -1,6 +1,6 @@
 {
-  "versionCode": 7,
-  "versionName": "1.3.0-beta.4",
-  "releaseNotes": "Fixed forced runner movement on a double with runners on 1st and 3rd; the runner from 3rd scores, and only the runner from 1st is asked whether to hold at 3rd or advance home. Preserves the runner-direction and beta updater fixes.",
-  "apkUrl": "https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.4/Baseball-At-Bat-Tracker-v1.3.0-beta.4.apk"
+  "versionCode": 9,
+  "versionName": "1.3.0-beta.6",
+  "releaseNotes": "Beta 6 includes the updated runner system and the latest at-bat tracker fixes.",
+  "apkUrl": "https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.6/Baseball-At-Bat-Tracker-v1.3.0-beta.6.apk"
 }
