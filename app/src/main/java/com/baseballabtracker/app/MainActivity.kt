@@ -222,16 +222,9 @@ class MainActivity : ComponentActivity() {
                 val release = if (channel == "testing") {
                     val arr = org.json.JSONArray(body)
                     var found: JSONObject? = null
-                    var foundVersion = "0.0.0"
                     for (i in 0 until arr.length()) {
                         val r = arr.optJSONObject(i) ?: continue
-                        if (r.optBoolean("draft", false) || !r.optBoolean("prerelease", false)) continue
-                        val candidateVersion = releaseVersion(r.optString("tag_name", ""))
-                        if (releaseApkUrl(r).isBlank()) continue
-                        if (found == null || isNewerVersion(candidateVersion, foundVersion)) {
-                            found = r
-                            foundVersion = candidateVersion
-                        }
+                        if (!r.optBoolean("draft", false) && r.optBoolean("prerelease", false)) { found = r; break }
                     }
                     found
                 } else JSONObject(body).takeUnless { it.optBoolean("draft", false) || it.optBoolean("prerelease", false) }
