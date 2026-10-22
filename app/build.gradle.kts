@@ -11,8 +11,8 @@ android {
         applicationId = "com.baseballabtracker.app"
         minSdk = 23
         targetSdk = 35
-        versionCode = 11
-        versionName = "1.3.0-beta.8"
+        versionCode = 12
+        versionName = "1.3.0-beta.9"
     }
 
     buildTypes {
@@ -37,5 +37,4 @@ android {
 dependencies {
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.activity:activity-ktx:1.10.1")
-    implementation("androidx.webkit:webkit:1.12.1")
 }

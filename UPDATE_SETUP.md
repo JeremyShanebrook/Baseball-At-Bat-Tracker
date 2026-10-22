@@ -3,7 +3,7 @@
 ## Important: the repository currently needs this structure
 
 The public repository is `JeremyShanebrook/Baseball-At-Bat-Tracker`.
-At the moment it only has `app-debug.apk` on `main`. That is not enough for the app's update checker.
+Both branches carry the full Android project source (APKs are distributed through GitHub Releases, not the repo tree). Generated and machine-specific files (`.gradle/`, `.idea/`, `build/`, `app/build/`, `local.properties`) are covered by `.gitignore` and must not be committed.
 
 Use the following structure on BOTH branches:
 
@@ -76,16 +76,16 @@ Asset:
 
 ## Current testing manifest
 
-This project contains a `update-manifest.json` configured for:
+As of v1.3.0-beta.9, the root `update-manifest.json` on `develop` is configured for:
 
 ```text
-versionCode: 4
-versionName: 1.3.0-beta.1
+versionCode: 12
+versionName: 1.3.0-beta.9
 APK:
-https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.1/Baseball-At-Bat-Tracker-v1.3.0-beta.1.apk
+https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.9/Baseball-At-Bat-Tracker-v1.3.0-beta.9.apk
 ```
 
-Put this version of `update-manifest.json` on `develop` when the beta APK has been uploaded.
+Keep the manifest on `develop` in step with the newest beta release: bump it in the same commit that bumps `versionCode`/`versionName`, and upload the matching APK to the GitHub prerelease.
 
 ## Current official manifest template
 
@@ -93,17 +93,14 @@ Put this version of `update-manifest.json` on `develop` when the beta APK has be
 
 ## Update checker behavior
 
-The Android app reads:
+Since beta.8 the Android app checks updates through the **GitHub Releases API** (the older raw-manifest check was removed in beta.9 cleanup; the manifest JSON files are still maintained for reference/rollback tooling):
 
-```text
-https://raw.githubusercontent.com/JeremyShanebrook/Baseball-At-Bat-Tracker/main/update-manifest.json
-```
+- Official channel: `GET /repos/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/latest` — GitHub's "latest" is always a full (non-prerelease) release, fed from `main`.
+- Testing channel: `GET /repos/JeremyShanebrook/Baseball-At-Bat-Tracker/releases?per_page=20` — the app takes the newest prerelease, fed from `develop`.
 
-for the official channel, or the same path with `develop` for testing.
+It compares the release tag's version against the installed version name. If the remote version is newer and the release has an `.apk` asset, it offers to download and install it. The rollback dialog (developer menu) lists other releases with APKs the same way.
 
-It compares `versionCode`. If the remote value is higher, it offers the APK URL from the manifest.
-
-The current Android code also reports the HTTP error returned by GitHub, which makes a missing manifest much easier to diagnose than the previous generic "check your internet connection" message.
+The app also reports the HTTP error returned by GitHub, which makes a missing release much easier to diagnose than a generic "check your internet connection" message.
 
 ## Update workflow
 

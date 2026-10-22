@@ -27,15 +27,12 @@ class MainActivity : ComponentActivity() {
 
     private fun currentChannel(): String = getPreferences(MODE_PRIVATE).getString("channel", "official") ?: "official"
     private fun currentVersionName(): String = packageManager.getPackageInfo(packageName, 0).versionName ?: "1.0"
-    private fun currentVersionCode(): Int = packageManager.getPackageInfo(packageName, 0).longVersionCode.toInt()
 
     companion object {
         // CHANGE THESE TWO VALUES to your GitHub account/repository.
         private const val GITHUB_OWNER = "JeremyShanebrook"
         private const val GITHUB_REPO = "Baseball-At-Bat-Tracker"
         private const val DEV_PIN = "1990"
-        private const val OFFICIAL_BRANCH = "main"
-        private const val TESTING_BRANCH = "develop"
     }
 
     private var developerUnlocked = false
@@ -191,12 +188,6 @@ class MainActivity : ComponentActivity() {
             if (name.lowercase().endsWith(".apk")) return asset.optString("browser_download_url", "")
         }
         return ""
-    }
-
-    private fun manifestUrl(channel: String): String {
-        // Kept for backward compatibility with older rollback data. New update checks use Releases API.
-        val branch = if (channel == "testing") TESTING_BRANCH else OFFICIAL_BRANCH
-        return "https://raw.githubusercontent.com/$GITHUB_OWNER/$GITHUB_REPO/$branch/update-manifest.json?cacheBust=${System.currentTimeMillis()}"
     }
 
     private fun checkForUpdatesInternal(channel: String, silent: Boolean = false) {
