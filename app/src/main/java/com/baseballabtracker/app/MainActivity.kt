@@ -38,8 +38,7 @@ class MainActivity : ComponentActivity() {
         // CHANGE THESE TWO VALUES to your GitHub account/repository.
         private const val GITHUB_OWNER = "JeremyShanebrook"
         private const val GITHUB_REPO = "Baseball-At-Bat-Tracker"
-        // No developer unlock code: the developer panel is unreachable in
-        // release builds. The testing channel is served by Play test tracks.
+        private const val DEV_PIN = "1990"
     }
 
     private var developerUnlocked = false
@@ -125,8 +124,8 @@ class MainActivity : ComponentActivity() {
         @JavascriptInterface fun versionCode(): Int = packageManager.getPackageInfo(packageName, 0).longVersionCode.toInt()
         @JavascriptInterface fun developerIsUnlocked(): Boolean = developerUnlocked
         @JavascriptInterface fun unlockDeveloper(pin: String): Boolean {
-            // Developer unlock removed: no code can unlock the panel.
-            return false
+            developerUnlocked = pin == DEV_PIN
+            return developerUnlocked
         }
         @JavascriptInterface fun currentChannel(): String = getPreferences(MODE_PRIVATE).getString("channel", "official") ?: "official"
         @JavascriptInterface fun setChannel(channel: String): Boolean {
