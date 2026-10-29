@@ -1,6 +1,1 @@
-{
-  "versionCode": 14,
-  "versionName": "1.3.0-beta.11",
-  "releaseNotes": "Fixes walk-up music attaching: picking a clip no longer fails silently (errors now show a message instead of dropping back to the team page), clips fall back to on-device storage when the app database is unavailable, and attached clips are now clearly marked with a music note next to the player in the roster, lineup, team stats, and the now-batting line.",
-  "apkUrl": "https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.11/Baseball-At-Bat-Tracker-v1.3.0-beta.11.apk"
-}
+{"apkUrl":"https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.12/Baseball-At-Bat-Tracker-v1.3.0-beta.12.apk","releaseNotes":"The Now Batting banner is now a solid navy bar with white text so it stands out from the rest of the game card. Pressing Play Music now starts with a stadium-style announcer voice saying 'Now batting, number N, Name' for whoever is actually at bat (number and name come from the roster automatically), with a PA-system echo, and then the walk-up music plays. Stop still stops everything, and the announcement plays at the phone's volume, independent of the in-app sounds setting.","versionCode":15,"versionName":"1.3.0-beta.12"}

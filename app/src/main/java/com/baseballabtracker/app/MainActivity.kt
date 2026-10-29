@@ -7,6 +7,9 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
+import android.util.Base64
 import android.webkit.JavascriptInterface
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
@@ -22,6 +25,7 @@ import org.json.JSONObject
 import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.Locale
 import kotlin.concurrent.thread
 
 class MainActivity : ComponentActivity() {
@@ -43,6 +47,15 @@ class MainActivity : ComponentActivity() {
     // Walk-up music picker: the WebView's file inputs need a file chooser.
     // GetContent hands back a content URI the page can read; no storage
     // permission is needed for a user-picked file.
+    // Announcer voice for walk-up music: the page asks Android's text-to-speech
+    // engine to render "Now batting, number N, Name" to a WAV file, then the page
+    // plays it back through a Web Audio echo so it sounds like a PA system.
+    // Rendering happens on the phone, so the voice is the phone's own speech
+    // engine, not a recorded clip — names and numbers come from the roster.
+    private var announcementTts: TextToSpeech? = null
+    private var announcementReady = false
+    private var announcementPending: String? = null
+
     private var fileChooserCallback: ValueCallback<Array<Uri>>? = null
     private val filePicker = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         fileChooserCallback?.onReceiveValue(if (uri != null) arrayOf(uri) else null)
@@ -128,6 +141,12 @@ class MainActivity : ComponentActivity() {
         @JavascriptInterface fun checkTestingUpdate() {
             if (developerUnlocked) checkForUpdatesInternal("testing")
         }
+        @JavascriptInterface fun synthesizeAnnouncement(text: String) {
+            runOnUiThread { startAnnouncement(text) }
+        }
+        @JavascriptInterface fun cancelAnnouncement() {
+            runOnUiThread { try { announcementTts?.stop() } catch (_: Exception) {} }
+        }
         @JavascriptInterface fun openBugReport() {
             val url = "https://github.com/$GITHUB_OWNER/$GITHUB_REPO/issues/new?title=Bug%20Report&labels=bug"
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
@@ -178,6 +197,61 @@ class MainActivity : ComponentActivity() {
         @JavascriptInterface fun clearUpdateCache() { File(cacheDir, "updates").deleteRecursively() }
         @JavascriptInterface fun openInstallSettings() {
             startActivity(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:$packageName")))
+        }
+    }
+
+    private fun startAnnouncement(text: String) {
+        val existing = announcementTts
+        if (existing == null) {
+            announcementPending = text
+            announcementTts = TextToSpeech(this) { status ->
+                announcementReady = status == TextToSpeech.SUCCESS
+                if (announcementReady) {
+                    try {
+                        announcementTts?.language = Locale.US
+                        announcementTts?.setPitch(0.9f)
+                        announcementTts?.setSpeechRate(1.05f)
+                        announcementTts?.setOnUtteranceProgressListener(announcementListener)
+                    } catch (_: Exception) {}
+                    val pending = announcementPending
+                    announcementPending = null
+                    if (pending != null) synthesizeAnnouncementFile(pending)
+                } else {
+                    announcementPending = null
+                    deliverAnnouncement("")
+                }
+            }
+            return
+        }
+        if (!announcementReady) { announcementPending = text; return }
+        try { existing.stop() } catch (_: Exception) {}
+        synthesizeAnnouncementFile(text)
+    }
+
+    private val announcementListener = object : UtteranceProgressListener() {
+        override fun onStart(utteranceId: String) {}
+        override fun onDone(utteranceId: String) {
+            if (utteranceId != "announcement") return
+            val data = try {
+                val bytes = File(cacheDir, "announcement.wav").readBytes()
+                Base64.encodeToString(bytes, Base64.NO_WRAP)
+            } catch (_: Exception) { "" }
+            deliverAnnouncement(if (data.isNotEmpty()) "data:audio/wav;base64,$data" else "")
+        }
+        override fun onError(utteranceId: String) { deliverAnnouncement("") }
+        @Deprecated("Deprecated in Java")
+        override fun onError(utteranceId: String, errorCode: Int) { deliverAnnouncement("") }
+    }
+
+    private fun synthesizeAnnouncementFile(text: String) {
+        try {
+            announcementTts?.synthesizeToFile(text, null, File(cacheDir, "announcement.wav"), "announcement")
+        } catch (_: Exception) { deliverAnnouncement("") }
+    }
+
+    private fun deliverAnnouncement(dataUrl: String) {
+        runOnUiThread {
+            try { webView.evaluateJavascript("window.__announcementReady && window.__announcementReady(\"$dataUrl\")", null) } catch (_: Exception) {}
         }
     }
 
@@ -312,6 +386,7 @@ class MainActivity : ComponentActivity() {
     override fun onDestroy() {
         fileChooserCallback?.onReceiveValue(null)
         fileChooserCallback = null
+        try { announcementTts?.shutdown() } catch (_: Exception) {}
         webView.stopLoading()
         webView.destroy()
         super.onDestroy()
