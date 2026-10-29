@@ -38,6 +38,13 @@ class MainActivity : ComponentActivity() {
         // CHANGE THESE TWO VALUES to your GitHub account/repository.
         private const val GITHUB_OWNER = "JeremyShanebrook"
         private const val GITHUB_REPO = "Baseball-At-Bat-Tracker"
+        // Read-only access key for the private repo: the app's update checker
+        // sends this as a Bearer token so it can read releases from the repo
+        // now that the repo is private. Anyone holding the APK can extract
+        // this key, so it must stay scoped read-only to this one repo —
+        // it grants nothing but reading this repo's releases.
+        // Set to "" to disable authenticated checks (public repos only).
+        private const val GITHUB_TOKEN = ""
         private const val DEV_PIN = "1990"
     }
 
@@ -165,6 +172,7 @@ class MainActivity : ComponentActivity() {
                     val conn = URL(releasesUrl()).openConnection() as HttpURLConnection
                     conn.connectTimeout = 10000; conn.readTimeout = 10000
                     conn.requestMethod = "GET"
+                    addGitHubAuth(conn)
                     conn.setRequestProperty("Accept", "application/vnd.github+json")
                     conn.setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
                     conn.setRequestProperty("User-Agent", "Baseball-At-Bat-Tracker")
@@ -258,6 +266,15 @@ class MainActivity : ComponentActivity() {
     private fun releasesUrl(): String =
         "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases?per_page=20"
 
+    // Attaches the repo read key, when one is set, so update checks and
+    // downloads work against the private repo. Sent only to github.com and
+    // api.github.com; never sent anywhere else.
+    private fun addGitHubAuth(conn: HttpURLConnection) {
+        if (GITHUB_TOKEN.isNotBlank()) {
+            conn.setRequestProperty("Authorization", "Bearer $GITHUB_TOKEN")
+        }
+    }
+
     private fun latestReleaseUrl(): String =
         "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/latest"
 
@@ -300,6 +317,7 @@ class MainActivity : ComponentActivity() {
                 conn.connectTimeout = 10000
                 conn.readTimeout = 10000
                 conn.requestMethod = "GET"
+                addGitHubAuth(conn)
                 conn.setRequestProperty("Accept", "application/vnd.github+json")
                 conn.setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
                 conn.setRequestProperty("User-Agent", "Baseball-At-Bat-Tracker")
@@ -356,6 +374,7 @@ class MainActivity : ComponentActivity() {
                 val conn = URL(apkUrl).openConnection() as HttpURLConnection
                 conn.connectTimeout = 15000
                 conn.readTimeout = 30000
+                addGitHubAuth(conn)
                 val code = conn.responseCode
                 if (code !in 200..299) {
                     conn.disconnect()
