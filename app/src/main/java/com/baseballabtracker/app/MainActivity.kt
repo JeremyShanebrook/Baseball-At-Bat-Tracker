@@ -7,19 +7,25 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.speech.tts.TextToSpeech
+import android.speech.tts.UtteranceProgressListener
+import android.util.Base64
 import android.webkit.JavascriptInterface
+import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.ComponentActivity
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.view.WindowCompat
 import org.json.JSONObject
 import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.Locale
 import kotlin.concurrent.thread
 
 class MainActivity : ComponentActivity() {
@@ -27,19 +33,34 @@ class MainActivity : ComponentActivity() {
 
     private fun currentChannel(): String = getPreferences(MODE_PRIVATE).getString("channel", "official") ?: "official"
     private fun currentVersionName(): String = packageManager.getPackageInfo(packageName, 0).versionName ?: "1.0"
-    private fun currentVersionCode(): Int = packageManager.getPackageInfo(packageName, 0).longVersionCode.toInt()
 
     companion object {
         // CHANGE THESE TWO VALUES to your GitHub account/repository.
         private const val GITHUB_OWNER = "JeremyShanebrook"
         private const val GITHUB_REPO = "Baseball-At-Bat-Tracker"
         private const val DEV_PIN = "1990"
-        private const val OFFICIAL_BRANCH = "main"
-        private const val TESTING_BRANCH = "develop"
     }
 
     private var developerUnlocked = false
     private var updateCheckDone = false
+
+    // Walk-up music picker: the WebView's file inputs need a file chooser.
+    // GetContent hands back a content URI the page can read; no storage
+    // permission is needed for a user-picked file.
+    // Announcer voice for walk-up music: the page asks Android's text-to-speech
+    // engine to render "Now batting, number N, Name" to a WAV file, then the page
+    // plays it back through a Web Audio echo so it sounds like a PA system.
+    // Rendering happens on the phone, so the voice is the phone's own speech
+    // engine, not a recorded clip — names and numbers come from the roster.
+    private var announcementTts: TextToSpeech? = null
+    private var announcementReady = false
+    private var announcementPending: String? = null
+
+    private var fileChooserCallback: ValueCallback<Array<Uri>>? = null
+    private val filePicker = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        fileChooserCallback?.onReceiveValue(if (uri != null) arrayOf(uri) else null)
+        fileChooserCallback = null
+    }
 
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +93,20 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
-            webChromeClient = WebChromeClient()
+            webChromeClient = object : WebChromeClient() {
+                override fun onShowFileChooser(
+                    view: WebView,
+                    filePathCallback: ValueCallback<Array<Uri>>,
+                    fileChooserParams: FileChooserParams
+                ): Boolean {
+                    fileChooserCallback?.onReceiveValue(null)
+                    fileChooserCallback = filePathCallback
+                    val mime = fileChooserParams.acceptTypes.firstOrNull()
+                        ?.takeIf { it.isNotEmpty() } ?: "*/*"
+                    filePicker.launch(mime)
+                    return true
+                }
+            }
             loadUrl("file:///android_asset/index.html")
         }
 
@@ -107,6 +141,12 @@ class MainActivity : ComponentActivity() {
         @JavascriptInterface fun checkTestingUpdate() {
             if (developerUnlocked) checkForUpdatesInternal("testing")
         }
+        @JavascriptInterface fun synthesizeAnnouncement(text: String) {
+            runOnUiThread { startAnnouncement(text) }
+        }
+        @JavascriptInterface fun cancelAnnouncement() {
+            runOnUiThread { try { announcementTts?.stop() } catch (_: Exception) {} }
+        }
         @JavascriptInterface fun openBugReport() {
             val url = "https://github.com/$GITHUB_OWNER/$GITHUB_REPO/issues/new?title=Bug%20Report&labels=bug"
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
@@ -122,20 +162,36 @@ class MainActivity : ComponentActivity() {
             if (!developerUnlocked) return
             thread {
                 try {
-                    val conn = URL(manifestUrl("testing")).openConnection() as HttpURLConnection
-                    conn.connectTimeout = 8000; conn.readTimeout = 8000
+                    val conn = URL(releasesUrl()).openConnection() as HttpURLConnection
+                    conn.connectTimeout = 10000; conn.readTimeout = 10000
+                    conn.requestMethod = "GET"
+                    conn.setRequestProperty("Accept", "application/vnd.github+json")
+                    conn.setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
+                    conn.setRequestProperty("User-Agent", "Baseball-At-Bat-Tracker")
+                    val code = conn.responseCode
+                    if (code !in 200..299) throw IllegalStateException("GitHub returned HTTP $code")
                     val body = conn.inputStream.bufferedReader().use { it.readText() }
                     conn.disconnect()
-                    val arr = JSONObject(body).optJSONArray("previous") ?: org.json.JSONArray()
+                    val arr = org.json.JSONArray(body)
                     val labels = ArrayList<String>(); val urls = ArrayList<String>()
-                    for (i in 0 until arr.length()) { val o=arr.getJSONObject(i); labels.add(o.optString("versionName","previous")); urls.add(o.optString("apkUrl","")) }
+                    val current = currentVersionName()
+                    for (i in 0 until arr.length()) {
+                        val r = arr.optJSONObject(i) ?: continue
+                        if (r.optBoolean("draft", false)) continue
+                        val name = releaseVersion(r.optString("tag_name", ""))
+                        val apk = releaseApkUrl(r)
+                        if (name.isNotBlank() && apk.isNotBlank() && name != current) {
+                            labels.add(name + if (r.optBoolean("prerelease", false)) " (Testing)" else " (Official)")
+                            urls.add(apk)
+                        }
+                    }
                     runOnUiThread {
-                        if (labels.isEmpty()) { showMessage("No rollback builds are listed in the testing update manifest."); return@runOnUiThread }
+                        if (labels.isEmpty()) { showMessage("No rollback builds with APKs were found on GitHub."); return@runOnUiThread }
                         AlertDialog.Builder(this@MainActivity).setTitle("Rollback version")
-                            .setItems(labels.toTypedArray()) { _, which -> if (urls[which].isNotBlank()) downloadAndInstall(urls[which], labels[which]) }
+                            .setItems(labels.toTypedArray()) { _, which -> if (urls[which].isNotBlank()) downloadAndInstall(urls[which], labels[which].substringBefore(" (")) }
                             .setNegativeButton("Cancel", null).show()
                     }
-                } catch (_: Exception) { runOnUiThread { showMessage("Couldn't load rollback versions.") } }
+                } catch (e: Exception) { runOnUiThread { showMessage("Couldn't load rollback versions.\n\n${e.message ?: "Unknown error"}") } }
             }
         }
         @JavascriptInterface fun clearUpdateCache() { File(cacheDir, "updates").deleteRecursively() }
@@ -144,38 +200,135 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun manifestUrl(channel: String): String {
-        val branch = if (channel == "testing") TESTING_BRANCH else OFFICIAL_BRANCH
-        return "https://raw.githubusercontent.com/$GITHUB_OWNER/$GITHUB_REPO/$branch/update-manifest.json?cacheBust=${System.currentTimeMillis()}"
+    private fun startAnnouncement(text: String) {
+        val existing = announcementTts
+        if (existing == null) {
+            announcementPending = text
+            announcementTts = TextToSpeech(this) { status ->
+                announcementReady = status == TextToSpeech.SUCCESS
+                if (announcementReady) {
+                    try {
+                        announcementTts?.language = Locale.US
+                        announcementTts?.setPitch(0.9f)
+                        announcementTts?.setSpeechRate(1.05f)
+                        announcementTts?.setOnUtteranceProgressListener(announcementListener)
+                    } catch (_: Exception) {}
+                    val pending = announcementPending
+                    announcementPending = null
+                    if (pending != null) synthesizeAnnouncementFile(pending)
+                } else {
+                    announcementPending = null
+                    deliverAnnouncement("")
+                }
+            }
+            return
+        }
+        if (!announcementReady) { announcementPending = text; return }
+        try { existing.stop() } catch (_: Exception) {}
+        synthesizeAnnouncementFile(text)
+    }
+
+    private val announcementListener = object : UtteranceProgressListener() {
+        override fun onStart(utteranceId: String) {}
+        override fun onDone(utteranceId: String) {
+            if (utteranceId != "announcement") return
+            val data = try {
+                val bytes = File(cacheDir, "announcement.wav").readBytes()
+                Base64.encodeToString(bytes, Base64.NO_WRAP)
+            } catch (_: Exception) { "" }
+            deliverAnnouncement(if (data.isNotEmpty()) "data:audio/wav;base64,$data" else "")
+        }
+        override fun onError(utteranceId: String) { deliverAnnouncement("") }
+        @Deprecated("Deprecated in Java")
+        override fun onError(utteranceId: String, errorCode: Int) { deliverAnnouncement("") }
+    }
+
+    private fun synthesizeAnnouncementFile(text: String) {
+        try {
+            announcementTts?.synthesizeToFile(text, null, File(cacheDir, "announcement.wav"), "announcement")
+        } catch (_: Exception) { deliverAnnouncement("") }
+    }
+
+    private fun deliverAnnouncement(dataUrl: String) {
+        runOnUiThread {
+            try { webView.evaluateJavascript("window.__announcementReady && window.__announcementReady(\"$dataUrl\")", null) } catch (_: Exception) {}
+        }
+    }
+
+    private fun releasesUrl(): String =
+        "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases?per_page=20"
+
+    private fun latestReleaseUrl(): String =
+        "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/latest"
+
+    private fun releaseVersion(tag: String): String = tag.removePrefix("v").trim()
+
+    private fun versionParts(v: String): List<Int> {
+        val m = Regex("^(\\d+)\\.(\\d+)\\.(\\d+)(?:-beta\\.(\\d+))?").find(v)
+        return if (m != null) listOf(
+            m.groupValues[1].toInt(), m.groupValues[2].toInt(), m.groupValues[3].toInt(),
+            m.groupValues.getOrNull(4)?.takeIf { it.isNotBlank() }?.toInt() ?: Int.MAX_VALUE
+        ) else listOf(0, 0, 0, 0)
+    }
+
+    private fun isNewerVersion(remote: String, current: String): Boolean {
+        val r = versionParts(remote)
+        val c = versionParts(current)
+        for (i in r.indices) if (r[i] != c[i]) return r[i] > c[i]
+        return false
+    }
+
+    private fun releaseApkUrl(release: JSONObject): String {
+        val assets = release.optJSONArray("assets") ?: return ""
+        for (i in 0 until assets.length()) {
+            val asset = assets.optJSONObject(i) ?: continue
+            val name = asset.optString("name", "")
+            if (name.lowercase().endsWith(".apk")) return asset.optString("browser_download_url", "")
+        }
+        return ""
     }
 
     private fun checkForUpdatesInternal(channel: String, silent: Boolean = false) {
         if (GITHUB_OWNER.isBlank() || GITHUB_REPO.isBlank()) {
-            runOnUiThread { if (!silent) showMessage("Update system isn't configured yet. Open MainActivity.kt and set GITHUB_OWNER and GITHUB_REPO to your GitHub repository.") }
+            runOnUiThread { if (!silent) showMessage("Update system isn't configured yet. Check the GitHub owner and repository in MainActivity.kt.") }
             return
         }
         thread {
             try {
-                val conn = URL(manifestUrl(channel)).openConnection() as HttpURLConnection
-                conn.connectTimeout = 8000
-                conn.readTimeout = 8000
+                val url = if (channel == "testing") releasesUrl() else latestReleaseUrl()
+                val conn = URL(url).openConnection() as HttpURLConnection
+                conn.connectTimeout = 10000
+                conn.readTimeout = 10000
                 conn.requestMethod = "GET"
-                conn.setRequestProperty("Cache-Control", "no-cache")
+                conn.setRequestProperty("Accept", "application/vnd.github+json")
+                conn.setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
+                conn.setRequestProperty("User-Agent", "Baseball-At-Bat-Tracker")
                 val code = conn.responseCode
-                if (code !in 200..299) {
-                    conn.disconnect()
-                    throw IllegalStateException("GitHub returned HTTP $code for ${manifestUrl(channel)}")
-                }
+                if (code !in 200..299) throw IllegalStateException("GitHub returned HTTP $code")
                 val body = conn.inputStream.bufferedReader().use { it.readText() }
                 conn.disconnect()
-                val m = JSONObject(body)
-                val remoteCode = m.optInt("versionCode", 0)
-                val remoteName = m.optString("versionName", "new version")
-                val notes = m.optString("releaseNotes", "")
-                val apkUrl = m.optString("apkUrl", "")
-                val current = currentVersionCode()
+
+                val release = if (channel == "testing") {
+                    val arr = org.json.JSONArray(body)
+                    var found: JSONObject? = null
+                    for (i in 0 until arr.length()) {
+                        val r = arr.optJSONObject(i) ?: continue
+                        if (!r.optBoolean("draft", false) && r.optBoolean("prerelease", false)) { found = r; break }
+                    }
+                    found
+                } else JSONObject(body).takeUnless { it.optBoolean("draft", false) || it.optBoolean("prerelease", false) }
+
+                if (release == null) {
+                    runOnUiThread { if (!silent) showMessage("No published ${if (channel == "testing") "testing" else "official"} release was found on GitHub.") }
+                    return@thread
+                }
+
+                val remoteName = releaseVersion(release.optString("tag_name", ""))
+                val notes = release.optString("body", "")
+                val apkUrl = releaseApkUrl(release)
+                val current = currentVersionName()
                 runOnUiThread {
-                    if (remoteCode > current && apkUrl.isNotBlank()) {
+                    if (remoteName.isNotBlank() && isNewerVersion(remoteName, current) && apkUrl.isNotBlank()) {
                         AlertDialog.Builder(this)
                             .setTitle("Update available")
                             .setMessage("Version $remoteName is available.\n\n$notes")
@@ -189,7 +342,7 @@ class MainActivity : ComponentActivity() {
             } catch (e: Exception) {
                 if (!silent) runOnUiThread {
                     val detail = e.message?.takeIf { it.isNotBlank() } ?: "Unknown error"
-                    showMessage("Couldn't check for updates.\n\n$detail")
+                    showMessage("Couldn't check GitHub for updates.\n\n$detail")
                 }
             }
         }
@@ -231,6 +384,9 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onDestroy() {
+        fileChooserCallback?.onReceiveValue(null)
+        fileChooserCallback = null
+        try { announcementTts?.shutdown() } catch (_: Exception) {}
         webView.stopLoading()
         webView.destroy()
         super.onDestroy()

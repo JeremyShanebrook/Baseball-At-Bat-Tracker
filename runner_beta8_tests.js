@@ -1,0 +1,23 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const vm=require('node:vm');
+const projectRoot=fs.existsSync(path.join(__dirname,'app','src','main','assets','index.html'))?__dirname:path.join(__dirname,'BaseballABTrackerAndroid-v1.3.0-beta8');
+const html=fs.readFileSync(path.join(projectRoot,'app','src','main','assets','index.html'),'utf8');
+const lines=html.split(/\r?\n/);
+function lineStarting(prefix){const s=lines.find(x=>x.startsWith(prefix));assert.ok(s,`source function ${prefix}`);return s}
+const ctx={console,playGameFX(){},activeAtBatResult(g,r){g.result=r},ruleFor(g){return {coachAfterFour:g.level==='kidcoach'&&g.inning>=4,maxPitches:5}}};
+vm.createContext(ctx);
+for(const prefix of ['function resetLiveCount','function liveBall','function liveStrike','function liveFoul']) vm.runInContext(lineStarting(prefix),ctx);
+const make=(level,inning=1,relief=false)=>({level,inning,coachRelief:relief,pitches:0,balls:0,strikes:0,fouls:0,log:[]});
+assert.equal(ctx.coachPitchActive(make('kidcoach',1)),true,'innings 1–3 use coach pitch');
+assert.equal(ctx.coachPitchActive(make('kidcoach',2)),true);
+assert.equal(ctx.coachPitchActive(make('kidcoach',3)),true);
+assert.equal(ctx.coachPitchActive(make('kid',4)),false,'kid pitch has no counter or cap');
+const trans=make('kidcoach',4);trans.balls=3;trans.pitches=3;ctx.liveBall(trans);assert.equal(trans.coachRelief,true,'four balls enters coach relief');assert.equal(trans.pitches,0,'coach pitch counter starts at transition');assert.equal(ctx.coachPitchActive(trans),true,'counter appears after transition');
+const foul=make('coach');foul.pitches=4;foul.strikes=2;ctx.liveFoul(foul);assert.equal(foul.pitches,5);assert.equal(foul.result,undefined,'foul on fifth pitch does not end the at-bat');assert.equal(foul.strikes,2,'two-strike foul keeps batter alive');
+const ball=make('coach');ball.pitches=4;ctx.liveBall(ball);assert.equal(ball.result,'SO','ball on fifth pitch is an out');
+const strike=make('coach');strike.pitches=4;strike.strikes=1;ctx.liveStrike(strike);assert.equal(strike.result,'SO','strike on fifth pitch is an out');
+const kidFoul=make('kid',4);kidFoul.strikes=2;kidFoul.pitches=20;ctx.liveFoul(kidFoul);assert.equal(kidFoul.result,undefined,'kid-pitch foul at two strikes keeps batter alive');assert.equal(kidFoul.strikes,2);
+const next=make('kidcoach',4,true);next.pitches=4;assert.equal(ctx.coachPitchActive(next),true);ctx.resetLiveCount(next);assert.equal(ctx.coachPitchActive(next),false,'next kid-pitch at-bat hides coach counter');assert.equal(next.pitches,0,'pitch counter resets between at-bats');
+console.log('PASS: coach innings 1–3, kid pitch, four-ball coach-relief transition, fifth-pitch foul/ball/strike, two-strike kid foul, and counter visibility/reset');
