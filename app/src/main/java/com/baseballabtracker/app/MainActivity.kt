@@ -263,21 +263,6 @@ class MainActivity : ComponentActivity() {
 
     private fun releaseVersion(tag: String): String = tag.removePrefix("v").trim()
 
-    private fun versionParts(v: String): List<Int> {
-        val m = Regex("^(\\d+)\\.(\\d+)\\.(\\d+)(?:-beta\\.(\\d+))?").find(v)
-        return if (m != null) listOf(
-            m.groupValues[1].toInt(), m.groupValues[2].toInt(), m.groupValues[3].toInt(),
-            m.groupValues.getOrNull(4)?.takeIf { it.isNotBlank() }?.toInt() ?: Int.MAX_VALUE
-        ) else listOf(0, 0, 0, 0)
-    }
-
-    private fun isNewerVersion(remote: String, current: String): Boolean {
-        val r = versionParts(remote)
-        val c = versionParts(current)
-        for (i in r.indices) if (r[i] != c[i]) return r[i] > c[i]
-        return false
-    }
-
     private fun releaseApkUrl(release: JSONObject): String {
         val assets = release.optJSONArray("assets") ?: return ""
         for (i in 0 until assets.length()) {
@@ -327,8 +312,14 @@ class MainActivity : ComponentActivity() {
                 val notes = release.optString("body", "")
                 val apkUrl = releaseApkUrl(release)
                 val current = currentVersionName()
+                // Cross-channel rule: the selected channel's latest release
+                // is offered whenever it is not the exact build installed,
+                // even if its version sorts lower (e.g. moving from a
+                // testing build back to an official build). Only an
+                // identical version name counts as up to date, so switching
+                // channels always pulls that channel's build.
                 runOnUiThread {
-                    if (remoteName.isNotBlank() && isNewerVersion(remoteName, current) && apkUrl.isNotBlank()) {
+                    if (remoteName.isNotBlank() && remoteName != current && apkUrl.isNotBlank()) {
                         AlertDialog.Builder(this)
                             .setTitle("Update available")
                             .setMessage("Version $remoteName is available.\n\n$notes")
