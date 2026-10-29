@@ -1,6 +1,6 @@
 {
-  "versionCode": 12,
-  "versionName": "1.3.0-beta.9",
-  "releaseNotes": "Maintenance release: build and repository cleanup (Gradle wrapper pinned to 8.10.2 for AGP 8.7.3, .gitignore added and build/IDE files untracked, stray resource file removed, dead update code and unused dependency removed). No gameplay changes; beta.8 features preserved.",
-  "apkUrl": "https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.9/Baseball-At-Bat-Tracker-v1.3.0-beta.9.apk"
+  "versionCode": 13,
+  "versionName": "1.3.0-beta.10",
+  "releaseNotes": "Team rosters, lineups, team stats and walk-up music. Add players (name + number) to a team in Team setup, set the batting order with up/down arrows, and flag your player with the My Player toggle so their at-bats feed player stats automatically. Start a game with a lineup editor plus an opponent lineup (number and name, either or both). In game, the current batter is shown, a Lineup button allows quick changes that persist across games, and batters with a music clip get a Play Music button that turns into Stop while playing (Stop fades out over 3 seconds). Walk-up music clips are picked from phone storage, up to 1 minute, and play at the phone's volume independently of the in-app sounds setting.",
+  "apkUrl": "https://github.com/JeremyShanebrook/Baseball-At-Bat-Tracker/releases/download/v1.3.0-beta.10/Baseball-At-Bat-Tracker-v1.3.0-beta.10.apk"
 }

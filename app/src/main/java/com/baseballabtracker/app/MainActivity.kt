@@ -8,12 +8,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.webkit.JavascriptInterface
+import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.ComponentActivity
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.view.WindowCompat
 import org.json.JSONObject
@@ -37,6 +39,15 @@ class MainActivity : ComponentActivity() {
 
     private var developerUnlocked = false
     private var updateCheckDone = false
+
+    // Walk-up music picker: the WebView's file inputs need a file chooser.
+    // GetContent hands back a content URI the page can read; no storage
+    // permission is needed for a user-picked file.
+    private var fileChooserCallback: ValueCallback<Array<Uri>>? = null
+    private val filePicker = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        fileChooserCallback?.onReceiveValue(if (uri != null) arrayOf(uri) else null)
+        fileChooserCallback = null
+    }
 
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +80,20 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
-            webChromeClient = WebChromeClient()
+            webChromeClient = object : WebChromeClient() {
+                override fun onShowFileChooser(
+                    view: WebView,
+                    filePathCallback: ValueCallback<Array<Uri>>,
+                    fileChooserParams: FileChooserParams
+                ): Boolean {
+                    fileChooserCallback?.onReceiveValue(null)
+                    fileChooserCallback = filePathCallback
+                    val mime = fileChooserParams.acceptTypes.firstOrNull()
+                        ?.takeIf { it.isNotEmpty() } ?: "*/*"
+                    filePicker.launch(mime)
+                    return true
+                }
+            }
             loadUrl("file:///android_asset/index.html")
         }
 
@@ -286,6 +310,8 @@ class MainActivity : ComponentActivity() {
     }
 
     override fun onDestroy() {
+        fileChooserCallback?.onReceiveValue(null)
+        fileChooserCallback = null
         webView.stopLoading()
         webView.destroy()
         super.onDestroy()
