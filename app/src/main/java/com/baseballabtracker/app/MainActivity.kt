@@ -162,6 +162,13 @@ class MainActivity : ComponentActivity() {
             val url = "https://github.com/$GITHUB_OWNER/$GITHUB_REPO/issues/new?title=Feature%20Request&labels=enhancement"
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         }
+        @JavascriptInterface fun shareText(text: String) {
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, text)
+            }
+            startActivity(Intent.createChooser(intent, "Share scoreboard"))
+        }
         @JavascriptInterface fun debugInfo(): String {
             return "version=${versionName()}\\nversionCode=${versionCode()}\\nchannel=${currentChannel()}\\nandroid=${android.os.Build.VERSION.RELEASE}\\ndevice=${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL}"
         }
