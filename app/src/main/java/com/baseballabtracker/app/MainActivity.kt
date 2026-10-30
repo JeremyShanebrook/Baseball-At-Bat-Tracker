@@ -169,6 +169,20 @@ class MainActivity : ComponentActivity() {
             }
             startActivity(Intent.createChooser(intent, "Share scoreboard"))
         }
+        @JavascriptInterface fun shareImage(dataUrl: String, filename: String) {
+            val base64 = dataUrl.substringAfter(",", dataUrl)
+            val bytes = Base64.decode(base64, Base64.DEFAULT)
+            val dir = File(cacheDir, "shared").apply { mkdirs() }
+            val file = File(dir, filename)
+            file.writeBytes(bytes)
+            val uri = FileProvider.getUriForFile(this@MainActivity, "${packageName}.fileprovider", file)
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "image/png"
+                putExtra(Intent.EXTRA_STREAM, uri)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            startActivity(Intent.createChooser(intent, "Share scoreboard"))
+        }
         @JavascriptInterface fun debugInfo(): String {
             return "version=${versionName()}\\nversionCode=${versionCode()}\\nchannel=${currentChannel()}\\nandroid=${android.os.Build.VERSION.RELEASE}\\ndevice=${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL}"
         }
